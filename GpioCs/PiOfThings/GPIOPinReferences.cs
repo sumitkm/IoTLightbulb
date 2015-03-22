@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GpioCs
+namespace PiOfThings
 {
 	public static class GPIOPinDirection
 	{

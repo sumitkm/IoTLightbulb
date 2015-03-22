@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace GpioCs
+namespace PiOfThings
 {
 	public class GPIOManager
 	{
