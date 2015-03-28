@@ -1,16 +1,19 @@
-﻿<Properties StartupItem="GpioCs/GpioCs.csproj">
+﻿<Properties StartupItem="PiOfThings/PiOfThings.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="GpioCs/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PiOfThings/GPIOManager.cs">
     <Files>
-      <File FileName="GpioCs/Program.cs" Line="1" Column="1" />
+      <File FileName="IoTLightbulbService/Program.cs" Line="22" Column="22" />
+      <File FileName="IoTLightbulbService/RelayControllerService.cs" Line="2" Column="2" />
+      <File FileName="PiOfThings/GPIOManager.cs" Line="3" Column="3" />
+      <File FileName="IoTLightbulbService/Properties/AssemblyInfo.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="GpioCs" expanded="True">
-            <Node name="References" expanded="True" selected="True" />
+          <Node name="PiOfThings" expanded="True" selected="True" />
+          <Node name="RelayControllerService" expanded="True">
+            <Node name="Packages" expanded="True" />
           </Node>
-          <Node name="GPIOManager" expanded="True" />
         </State>
       </Pad>
     </Pads>
@@ -20,4 +23,7 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <AuthorInfo Name="sumit" Email="sumitkm@gmail.com" Copyright="Sumit KM" Company="" Trademark="" />
+  <DisabledProjects>
+    <String>IoTLightbulbService/RelayControllerService.csproj</String>
+  </DisabledProjects>
 </Properties>

@@ -1,4 +1,4 @@
-﻿// A lightweight wrapper that wraps around the
+﻿// A lightweight wrapper around the
 // GPIO ports of a Raspberry Pi 2 and Raspberry Pi 1 B+
 // It uses the Filesystem to read from and write to 
 // the pins
@@ -60,9 +60,17 @@ namespace PiOfThings
 		{
 			try
 			{
-				File.WriteAllText (String.Format ("{0}gpio{1}/direction", GPIO_ROOT_DIR, CurrentPin.ToString ("D")), GPIOPinDirection.Out);
-				File.WriteAllText (String.Format ("{0}gpio{1}/value", GPIO_ROOT_DIR, CurrentPin.ToString ("D")), state.ToString ("D"));
-				return true;
+				if (CurrentPin != GPIOId.GPIOUnknown)
+				{
+					File.WriteAllText (String.Format ("{0}gpio{1}/direction", GPIO_ROOT_DIR, CurrentPin.ToString ("D")), GPIOPinDirection.Out);
+					File.WriteAllText (String.Format ("{0}gpio{1}/value", GPIO_ROOT_DIR, CurrentPin.ToString ("D")), state.ToString ("D"));
+					return true;
+				}
+				else
+				{
+					Console.WriteLine ("Failed to WriteToPin: " + CurrentPin.ToString ("D") + " Check if Pin selection succeeded earlier.");
+					return false;
+				}
 			}
 			catch (Exception ex)
 			{
@@ -92,7 +100,6 @@ namespace PiOfThings
 			try
 			{
 				File.WriteAllText (GPIO_ROOT_DIR + "unexport", pin.ToString ("D"));
-				_busyPins [pin] = false;
 				CurrentPin = GPIOId.GPIOUnknown;
 				return true;
 			}
@@ -106,6 +113,18 @@ namespace PiOfThings
 		public bool ReleasePin ()
 		{
 			return ReleasePin (CurrentPin);
+		}
+
+		public void ReleaseAll ()
+		{
+			foreach (var busyPin in _busyPins)
+			{
+				if (busyPin.Value)
+				{
+					ReleasePin (busyPin.Key);
+				}
+			}
+			_busyPins.Clear ();
 		}
 
 		private bool ReservePin (GPIOId pin)

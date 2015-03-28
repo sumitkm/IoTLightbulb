@@ -38,9 +38,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\GPIOManager\GPIOManager.csproj">
+    <ProjectReference Include="..\PiOfThings\PiOfThings.csproj">
       <Project>{FBB2E6FC-70BC-48C8-A7DC-0C7119875059}</Project>
-      <Name>GPIOManager</Name>
+      <Name>PiOfThings</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
