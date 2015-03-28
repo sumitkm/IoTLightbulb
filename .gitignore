@@ -1,0 +1,17 @@
+*.suo
+*.user
+*.sln.docstates
+*.userprefs
+
+[Dd]ebug/
+[Rr]elease/
+build/
+[Bb]in/
+[Oo]bj/
+[Pp]ackages/
+
+*.[Pp]upblish.xml
+*azurePubxml
+
+
+

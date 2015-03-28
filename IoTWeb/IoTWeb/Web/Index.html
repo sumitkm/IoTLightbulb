@@ -1,0 +1,32 @@
+﻿<!DOCTYPE>
+<html>
+	<head>
+		<title>IoT Web</title>
+		<script type="text/javascript" src="/Web/Scripts/jquery-1.6.4.min.js"></script>
+		<script type="text/javascript" src="/Web/Scripts/jquery.signalR-2.2.0.min.js"></script>
+		<script type="text/javascript" src="/signalr/hubs"></script>
+	</head>
+	<body>
+		<h1>Controlling Relays from the web using SignalR </h1>
+		<button id="turnOn1">Turn On </button>
+		<button id="turnOff1">Turn Off 1</button> 
+
+		<script type="text/javascript">
+		$(function() 
+		{
+			var hub = $.connection.IoTHub;
+
+			$.connection.hub.start().done(function () 
+			{
+				$('#turnOn1').click(function(){
+					hub.server.switchOn(17);
+				});
+				$('#turnOff1').click(function(){
+					hub.server.switchOff(17);
+				});
+			});
+		});
+		</script>
+	</body>
+
+</html>
