@@ -1,12 +1,14 @@
 ﻿using System;
 using Microsoft.AspNet.SignalR.Client;
 using PiOfThings;
+using PiOfThings.GpioCore;
+using PiOfThings.GpioUtils;
 
 namespace RelayControllerService
 {
 	public class RelayControllerService
 	{
-		readonly GPIOManager _manager = new GPIOManager();
+		readonly GpioManager _manager = new GpioManager();
 
 		private IHubProxy IoTHub { get; set; }
 		private HubConnection IoTHubConnection { get; set; }
@@ -16,39 +18,39 @@ namespace RelayControllerService
 			IoTHubConnection = new HubConnection (url);
 			IoTHub = IoTHubConnection.CreateHubProxy("IoTHub");
 
-			IoTHub.On<GPIOId>("switchOn", OnSwitchedOn);
+			IoTHub.On<GpioId>("switchOn", OnSwitchedOn);
 
-			IoTHub.On<GPIOId>("switchOff", OnSwitchedOff);
+			IoTHub.On<GpioId>("switchOff", OnSwitchedOff);
 
 			Console.Read();
 		}
 
-		private void OnSwitchedOn(GPIOId gpioPinId)
+		private void OnSwitchedOn(GpioId gpioPinId)
 		{
 			Console.WriteLine("SWITCH ON RECIEVED " + gpioPinId);
 			if (_manager.CurrentPin != gpioPinId)
 			{
 				_manager.SelectPin (gpioPinId);
-				_manager.WriteToPin (GPIOPinState.Low);
+				_manager.WriteToPin (GpioPinState.Low);
 			}
 			else
 			{
-				_manager.WriteToPin (GPIOPinState.Low);
+				_manager.WriteToPin (GpioPinState.Low);
 			}
 		}
 
-		private void OnSwitchedOff(GPIOId gpioPinId)
+		private void OnSwitchedOff(GpioId gpioPinId)
 		{
 			Console.WriteLine("SWITCH OFF RECIEVED " + gpioPinId);
 
 			if (_manager.CurrentPin != gpioPinId)
 			{
 				_manager.SelectPin (gpioPinId);
-				_manager.WriteToPin (GPIOPinState.High);
+				_manager.WriteToPin (GpioPinState.High);
 			}
 			else
 			{
-				_manager.WriteToPin(GPIOPinState.High);
+				_manager.WriteToPin(GpioPinState.High);
 			}
 		}
 

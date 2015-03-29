@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -30,6 +30,12 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PiOfThings.GpioCore">
+      <HintPath>..\packages\PiOfThings.GpioCore.0.1.0\lib\net45\PiOfThings.GpioCore.dll</HintPath>
+    </Reference>
+    <Reference Include="PiOfThings.GpioUtils">
+      <HintPath>..\packages\PiOfThings.GpioUtils.0.1.0\lib\net45\PiOfThings.GpioUtils.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -61,11 +67,5 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PiOfThings\PiOfThings.csproj">
-      <Project>{FBB2E6FC-70BC-48C8-A7DC-0C7119875059}</Project>
-      <Name>PiOfThings</Name>
-    </ProjectReference>
   </ItemGroup>
 </Project>
