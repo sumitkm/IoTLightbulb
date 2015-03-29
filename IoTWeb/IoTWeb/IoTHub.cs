@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
-using PiOfThings;
+using PiOfThings.GpioUtils;
 
 namespace IoTWeb
 
@@ -22,13 +22,13 @@ namespace IoTWeb
 			return false;
 		}
 
-		public void switchOn (GPIOId gpioPinId)
+		public void switchOn (GpioId gpioPinId)
 		{
 			Console.WriteLine ("Switching PIN");
 			Clients.Others.switchOn (gpioPinId);
 		}
 
-		public void switchOff (GPIOId gpioPinId)
+		public void switchOff (GpioId gpioPinId)
 		{
 			Console.WriteLine ("Switching OFF");
 

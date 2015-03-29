@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoTWeb", "IoTWeb\IoTWeb.csproj", "{00469877-E484-4185-B94D-B02D8E5E6ED4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiOfThings", "..\GpioCs\PiOfThings\PiOfThings.csproj", "{FBB2E6FC-70BC-48C8-A7DC-0C7119875059}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -15,9 +13,5 @@ Global
 		{00469877-E484-4185-B94D-B02D8E5E6ED4}.Debug|x86.Build.0 = Debug|x86
 		{00469877-E484-4185-B94D-B02D8E5E6ED4}.Release|x86.ActiveCfg = Release|x86
 		{00469877-E484-4185-B94D-B02D8E5E6ED4}.Release|x86.Build.0 = Release|x86
-		{FBB2E6FC-70BC-48C8-A7DC-0C7119875059}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{FBB2E6FC-70BC-48C8-A7DC-0C7119875059}.Debug|x86.Build.0 = Debug|Any CPU
-		{FBB2E6FC-70BC-48C8-A7DC-0C7119875059}.Release|x86.ActiveCfg = Release|Any CPU
-		{FBB2E6FC-70BC-48C8-A7DC-0C7119875059}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
