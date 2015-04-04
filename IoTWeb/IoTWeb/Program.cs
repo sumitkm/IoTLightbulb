@@ -12,7 +12,6 @@ namespace IoTWeb
 			{
 				Console.WriteLine("Press Enter to quit.");
 				Console.ReadKey();
-
 			}
 		}
 	}

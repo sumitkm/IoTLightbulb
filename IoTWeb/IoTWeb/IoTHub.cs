@@ -9,35 +9,21 @@ namespace IoTWeb
 	[HubName("IoTHub")]
 	public class IoTHub: Hub
 	{
-		public bool JoinGroup(string groupName)
+		public bool Handshake()
 		{
-			try
-			{
-				Groups.Add (Context.ConnectionId, groupName);
-				return true;
-			}
-			catch	
-			{
-			}
-			return false;
+			return true;
 		}
 
-		public void switchOn (GpioId gpioPinId)
+		public void SwitchOn (GpioId gpioPinId)
 		{
-			Console.WriteLine ("Switching PIN");
+			Console.WriteLine ("Switching PIN" + gpioPinId.ToString("D"));
 			Clients.Others.switchOn (gpioPinId);
 		}
 
-		public void switchOff (GpioId gpioPinId)
+		public void SwitchOff (GpioId gpioPinId)
 		{
-			Console.WriteLine ("Switching OFF");
-
+			Console.WriteLine ("Switching OFF " + gpioPinId.ToString("D"));
 			Clients.Others.switchOff (gpioPinId);
-		}
-
-		protected override void Dispose (bool disposing)
-		{
-			base.Dispose (disposing);
 		}
 	}
 }

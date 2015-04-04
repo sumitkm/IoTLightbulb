@@ -8,83 +8,84 @@ namespace RelayControllerService
 {
 	public class RelayControllerService
 	{
-		readonly GpioManager _manager = new GpioManager();
+		readonly GpioManager _manager = new GpioManager ();
 
 		private IHubProxy IoTHub { get; set; }
+
 		private HubConnection IoTHubConnection { get; set; }
 
 		public RelayControllerService (string url)
 		{
 			IoTHubConnection = new HubConnection (url);
-			IoTHub = IoTHubConnection.CreateHubProxy("IoTHub");
+			IoTHub = IoTHubConnection.CreateHubProxy ("IoTHub");
 
-			IoTHub.On<GpioId>("switchOn", OnSwitchedOn);
+			IoTHub.On<GpioId> ("SwitchOn", OnSwitchedOn);
 
-			IoTHub.On<GpioId>("switchOff", OnSwitchedOff);
+			IoTHub.On<GpioId> ("SwitchOff", OnSwitchedOff);
 
-			Console.Read();
+			Console.Read ();
 		}
 
-		private void OnSwitchedOn(GpioId gpioPinId)
+		private void OnSwitchedOn (GpioId gpioPinId)
 		{
-			Console.WriteLine("SWITCH ON RECIEVED " + gpioPinId);
-			if (_manager.CurrentPin != gpioPinId)
-			{
+			Console.WriteLine ("SWITCH ON RECIEVED " + gpioPinId);
+			if (_manager.CurrentPin != gpioPinId) {
 				_manager.SelectPin (gpioPinId);
 				_manager.WriteToPin (GpioPinState.Low);
-			}
-			else
+			} 
+			else 
 			{
 				_manager.WriteToPin (GpioPinState.Low);
 			}
 		}
 
-		private void OnSwitchedOff(GpioId gpioPinId)
+		private void OnSwitchedOff (GpioId gpioPinId)
 		{
-			Console.WriteLine("SWITCH OFF RECIEVED " + gpioPinId);
+			Console.WriteLine ("SWITCH OFF RECIEVED " + gpioPinId);
 
-			if (_manager.CurrentPin != gpioPinId)
-			{
+			if (_manager.CurrentPin != gpioPinId) {
 				_manager.SelectPin (gpioPinId);
 				_manager.WriteToPin (GpioPinState.High);
-			}
-			else
+			} 
+			else 
 			{
-				_manager.WriteToPin(GpioPinState.High);
+				_manager.WriteToPin (GpioPinState.High);
 			}
 		}
 
-		public void StartConnection()
+		public void StartConnection ()
 		{
 			//Start connection
-			IoTHubConnection.Start().ContinueWith(task => {
+			IoTHubConnection.Start ().ContinueWith (task => {
 				if (task.IsFaulted) 
 				{
-					Console.WriteLine("There was an error opening the connection:{0}",
-						task.Exception.GetBaseException());
-				} else {
-					Console.WriteLine("Connected");
+					Console.WriteLine ("There was an error opening the connection:{0}",
+						task.Exception.GetBaseException ());
+				} 
+				else 
+				{
+					Console.WriteLine ("Connected");
 
-					IoTHub.Invoke<string>("JoinGroup", "homePi").ContinueWith(joinGroupTask => {
+					IoTHub.Invoke<string> ("HandShake").ContinueWith (joinGroupTask => {
 						if (task.IsFaulted) 
 						{
-							Console.WriteLine("There was an error calling send: {0}",
-								task.Exception.GetBaseException());
+							Console.WriteLine ("There was an error calling send: {0}",
+								task.Exception.GetBaseException ());
 						} 
 						else 
 						{
-							Console.WriteLine(joinGroupTask.Result);
+							Console.WriteLine ("Handshake successful - " + joinGroupTask.Result);
 						}
 					});
 				}
 
-			}).Wait();
+			}).Wait ();
 		}
 
-		public void StopConnection()
+		public void StopConnection ()
 		{
 			_manager.ReleaseAll ();
-			IoTHubConnection.Stop();
+			IoTHubConnection.Stop ();
 		}
 	}
 }

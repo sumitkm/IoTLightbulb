@@ -84,7 +84,9 @@
     <None Include="packages.config" />
     <None Include="Web\Scripts\jquery.signalR-2.2.0.js" />
     <None Include="Web\Scripts\jquery-2.1.3.js" />
-    <None Include="Web\Scripts\jquery-2.1.3.min.js" />
+    <None Include="Web\Scripts\jquery-2.1.3.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Web\Scripts\jquery-2.1.3.min.map" />
     <None Include="Web\Scripts\jquery-2.1.3-vsdoc.js" />
   </ItemGroup>
@@ -97,7 +99,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Web\Index.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 </Project>

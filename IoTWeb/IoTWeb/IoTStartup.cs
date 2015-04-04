@@ -18,9 +18,7 @@ namespace IoTWeb
 		{
 			app.UseCors (CorsOptions.AllowAll);
 			app.MapSignalR ();		
-			string exeFolder = System.IO.Path.GetDirectoryName (System.Reflection.Assembly.GetExecutingAssembly ().Location);
-			string webFolder = System.IO.Path.Combine (exeFolder, "Web");
-			Console.WriteLine ("Hosting Files from : " + webFolder);
+			Console.WriteLine ("Hosting Files from : /Web");
 			app.UseStaticFiles ("/Web");
 		}
 	}
