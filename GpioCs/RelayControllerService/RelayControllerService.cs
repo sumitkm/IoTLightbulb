@@ -3,6 +3,7 @@ using Microsoft.AspNet.SignalR.Client;
 using PiOfThings;
 using PiOfThings.GpioCore;
 using PiOfThings.GpioUtils;
+using RelayControllerService.Data;
 
 namespace RelayControllerService
 {
@@ -31,12 +32,8 @@ namespace RelayControllerService
 			Console.WriteLine ("SWITCH ON RECIEVED " + gpioPinId);
 			if (_manager.CurrentPin != gpioPinId) {
 				_manager.SelectPin (gpioPinId);
-				_manager.WriteToPin (GpioPinState.Low);
 			} 
-			else 
-			{
-				_manager.WriteToPin (GpioPinState.Low);
-			}
+			_manager.WriteToPin (GpioPinState.Low);
 		}
 
 		private void OnSwitchedOff (GpioId gpioPinId)
@@ -45,17 +42,15 @@ namespace RelayControllerService
 
 			if (_manager.CurrentPin != gpioPinId) {
 				_manager.SelectPin (gpioPinId);
-				_manager.WriteToPin (GpioPinState.High);
 			} 
-			else 
-			{
-				_manager.WriteToPin (GpioPinState.High);
-			}
+			_manager.WriteToPin (GpioPinState.High);
 		}
 
 		public void StartConnection ()
 		{
 			//Start connection
+			DeviceDataContext context = new DeviceDataContext ();
+			DeviceData data = context.GetActiveDeviceData ();
 			IoTHubConnection.Start ().ContinueWith (task => {
 				if (task.IsFaulted) 
 				{
@@ -66,7 +61,7 @@ namespace RelayControllerService
 				{
 					Console.WriteLine ("Connected");
 
-					IoTHub.Invoke<string> ("HandShake").ContinueWith (joinGroupTask => {
+					IoTHub.Invoke<string> ("HandShake", data.DeviceId).ContinueWith (joinGroupTask => {
 						if (task.IsFaulted) 
 						{
 							Console.WriteLine ("There was an error calling send: {0}",

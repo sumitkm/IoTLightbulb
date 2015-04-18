@@ -5,8 +5,8 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{AEA2C5CF-186E-4E64-B657-E577CF71BE04}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>IoTLightbulbService</RootNamespace>
-    <AssemblyName>IoTLightbulbService</AssemblyName>
+    <RootNamespace>RelayControllerService</RootNamespace>
+    <AssemblyName>RelayControllerService</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -58,14 +58,22 @@
     <Reference Include="Microsoft.AspNet.SignalR.Client">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Data.Sqlite" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RelayControllerService.cs" />
+    <Compile Include="Mono.Options\Options.cs" />
+    <Compile Include="Data\DeviceData.cs" />
+    <Compile Include="Data\DeviceDataContext.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\" />
   </ItemGroup>
 </Project>

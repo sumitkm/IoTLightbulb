@@ -9,9 +9,9 @@ namespace IoTWeb
 	[HubName("IoTHub")]
 	public class IoTHub: Hub
 	{
-		public bool Handshake()
+		public string Handshake(string deviceId)
 		{
-			return true;
+			return deviceId;
 		}
 
 		public void SwitchOn (GpioId gpioPinId)
