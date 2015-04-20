@@ -12,7 +12,7 @@ namespace RelayControllerService
 		{
 			if (args.Length > 0 && args [0] == "-url")
 			{
-				if (args.Length > 2)
+				if (args.Length >= 2)
 				{
 					url = args [1];
 				}

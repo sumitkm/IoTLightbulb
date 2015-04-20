@@ -68,6 +68,7 @@
     <Compile Include="Mono.Options\Options.cs" />
     <Compile Include="Data\DeviceData.cs" />
     <Compile Include="Data\DeviceDataContext.cs" />
+    <Compile Include="Data\DeviceStateData.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

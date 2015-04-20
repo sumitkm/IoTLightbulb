@@ -84,6 +84,7 @@ namespace PiOfThings
 			GPIOPinState currentState = GPIOPinState.Unknown;
 			try
 			{
+				File.WriteAllText (String.Format ("{0}gpio{1}/direction", GPIO_ROOT_DIR, pin.ToString ("D")), GPIOPinDirection.In);
 				string state = File.ReadAllText (String.Format ("{0}gpio{1}/value", GPIO_ROOT_DIR, pin.ToString ("D")));
 				currentState = (state == "1" ? GPIOPinState.High : GPIOPinState.Low);			
 			}

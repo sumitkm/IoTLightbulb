@@ -18,11 +18,13 @@ namespace RelayControllerService
 		public RelayControllerService (string url)
 		{
 			IoTHubConnection = new HubConnection (url);
-			IoTHub = IoTHubConnection.CreateHubProxy ("IoTHub");
+			IoTHub = IoTHubConnection.CreateHubProxy ("PiotHub");
 
 			IoTHub.On<GpioId> ("SwitchOn", OnSwitchedOn);
 
 			IoTHub.On<GpioId> ("SwitchOff", OnSwitchedOff);
+
+			IoTHub.On ("StatusProbe", OnProbeRecieved);
 
 			Console.Read ();
 		}
@@ -44,6 +46,44 @@ namespace RelayControllerService
 				_manager.SelectPin (gpioPinId);
 			} 
 			_manager.WriteToPin (GpioPinState.High);
+		}
+
+		private void OnProbeRecieved()
+		{
+			Console.WriteLine ("StatusProbe RECIEVED ");
+			try
+			{
+			DeviceStateData data = new DeviceStateData ();
+			for (int i = 1; i <= 40; i++) 
+			{
+				GpioId currentPinId = GpioPinMapping.GetGPIOId (i);
+				if (currentPinId != GpioId.GPIOUnknown) 
+				{
+					//_manager.SelectPin (GpioPinMapping.GetGPIOId (i));
+					GpioPinState state = _manager.ReadFromPin (currentPinId);
+					data.GpioPinStates.Add (currentPinId, state);
+					//_manager.ReleasePin (currentPinId);
+				}
+			}
+			data.TimeStamp = DateTime.UtcNow.Ticks;
+			IoTHub.Invoke<string> ("CurrentStatus", data).ContinueWith (sendStatusTask => 
+				{
+					if(sendStatusTask.IsFaulted)
+					{
+						Console.WriteLine ("There was an error opening the connection:{0}",
+							sendStatusTask.Exception.GetBaseException ());
+					}
+					else
+					{
+						Console.WriteLine("Probe data sent: {0}" + new DateTime(data.TimeStamp).ToLongDateString());
+					}
+				});
+			}
+			catch (Exception ex) 
+			{
+				Console.WriteLine ("Exception : {0}" + ex.Message);
+			}
+
 		}
 
 		public void StartConnection ()

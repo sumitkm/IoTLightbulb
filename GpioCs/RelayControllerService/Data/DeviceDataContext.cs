@@ -5,15 +5,15 @@ using System.Collections.Generic;
 
 namespace RelayControllerService.Data
 {
-	public class DeviceDataContext
+	public class DeviceDataContext : IDisposable
 	{
 		IDbConnection _connection = null;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="RelayControllerService.DeviceDataContext"/> class.
 		/// <description>DeviceDataContext connects to the SQLite database and provides
-		/// an abscraction to store and retrieve, DeviceData </description>
-		/// </summary>/home/pi/projects/IoTLightbulb/GpioCs/RelayControllerServi
+		/// an abstraction to store and retrieve, DeviceData </description>
+		/// </summary>
 		public DeviceDataContext ()
 		{
 			string connectionString = "URI=file:piofthings.db";
@@ -77,7 +77,7 @@ namespace RelayControllerService.Data
 				DeviceData current = new DeviceData ();
 				current.Id = reader.GetInt16 (0);
 				current.DeviceId = reader.GetString (1);
-				//current.IsActive = reader.GetInt16 (2) == 1;
+				current.IsActive = true;
 				devices.Add (current);
 			}
 			reader.Close ();
@@ -85,5 +85,17 @@ namespace RelayControllerService.Data
 			getDeviceData.Dispose ();
 			return devices[0];
 		}
+
+		#region IDisposable implementation
+
+		public void Dispose ()
+		{
+			if (_connection != null) 
+			{
+				_connection.Dispose ();
+			}
+		}
+
+		#endregion
 	}
 }
