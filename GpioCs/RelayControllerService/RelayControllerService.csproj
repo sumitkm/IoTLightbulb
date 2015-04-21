@@ -30,12 +30,6 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PiOfThings.GpioCore">
-      <HintPath>..\packages\PiOfThings.GpioCore.0.1.0\lib\net45\PiOfThings.GpioCore.dll</HintPath>
-    </Reference>
-    <Reference Include="PiOfThings.GpioUtils">
-      <HintPath>..\packages\PiOfThings.GpioUtils.0.1.0\lib\net45\PiOfThings.GpioUtils.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -60,6 +54,12 @@
     </Reference>
     <Reference Include="Mono.Data.Sqlite" />
     <Reference Include="System.Data" />
+    <Reference Include="PiOfThings.GpioUtils">
+      <HintPath>..\packages\PiOfThings.GpioUtils.0.1.1\lib\net45\PiOfThings.GpioUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="PiOfThings.GpioCore">
+      <HintPath>..\packages\PiOfThings.GpioCore.0.1.1\lib\net45\PiOfThings.GpioCore.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -68,7 +68,6 @@
     <Compile Include="Mono.Options\Options.cs" />
     <Compile Include="Data\DeviceData.cs" />
     <Compile Include="Data\DeviceDataContext.cs" />
-    <Compile Include="Data\DeviceStateData.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -3,15 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiOfThings", "PiOfThings.csproj", "{FBB2E6FC-70BC-48C8-A7DC-0C7119875059}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiOfThings.Test", "..\GpioCs\PiOfThings.Test.csproj", "{C0040A7E-9B8F-42F1-9DF9-A29C6629E90F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C0040A7E-9B8F-42F1-9DF9-A29C6629E90F}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{C0040A7E-9B8F-42F1-9DF9-A29C6629E90F}.Debug|Any CPU.Build.0 = Debug|x86
+		{C0040A7E-9B8F-42F1-9DF9-A29C6629E90F}.Debug|x86.ActiveCfg = Debug|x86
+		{C0040A7E-9B8F-42F1-9DF9-A29C6629E90F}.Debug|x86.Build.0 = Debug|x86
+		{C0040A7E-9B8F-42F1-9DF9-A29C6629E90F}.Release|Any CPU.ActiveCfg = Release|x86
+		{C0040A7E-9B8F-42F1-9DF9-A29C6629E90F}.Release|Any CPU.Build.0 = Release|x86
+		{C0040A7E-9B8F-42F1-9DF9-A29C6629E90F}.Release|x86.ActiveCfg = Release|x86
+		{C0040A7E-9B8F-42F1-9DF9-A29C6629E90F}.Release|x86.Build.0 = Release|x86
 		{FBB2E6FC-70BC-48C8-A7DC-0C7119875059}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FBB2E6FC-70BC-48C8-A7DC-0C7119875059}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBB2E6FC-70BC-48C8-A7DC-0C7119875059}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FBB2E6FC-70BC-48C8-A7DC-0C7119875059}.Debug|x86.Build.0 = Debug|Any CPU
 		{FBB2E6FC-70BC-48C8-A7DC-0C7119875059}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBB2E6FC-70BC-48C8-A7DC-0C7119875059}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBB2E6FC-70BC-48C8-A7DC-0C7119875059}.Release|x86.ActiveCfg = Release|Any CPU
+		{FBB2E6FC-70BC-48C8-A7DC-0C7119875059}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

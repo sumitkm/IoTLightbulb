@@ -18,13 +18,13 @@ namespace RelayControllerService.Data
 		{
 			string connectionString = "URI=file:piofthings.db";
 			bool initialize = false;
-			if (!System.IO.File.Exists ("piofthings.db")) 
+			if (!System.IO.File.Exists ("piofthings.db"))
 			{
 				initialize = true;
 			}
 			_connection = (IDbConnection)new SqliteConnection (connectionString);
 			_connection.Open ();
-			if (initialize) 
+			if (initialize)
 			{
 				InitializeDb ();
 			}
@@ -32,7 +32,7 @@ namespace RelayControllerService.Data
 
 		private void InitializeDb ()
 		{
-			try 
+			try
 			{
 				IDbCommand createDeviceData = Connection.CreateCommand ();
 				createDeviceData.CommandText = "CREATE TABLE DeviceData (Id INTEGER PRIMARY KEY, DeviceId TEXT NOT NULL, Active INTEGER NOT NULL)";
@@ -49,17 +49,17 @@ namespace RelayControllerService.Data
 				insertDataCommand.Dispose ();
 				insertDataCommand = null;
 
-			} 
-			catch (Exception ex) 
+			}
+			catch (Exception ex)
 			{
 				Console.WriteLine ("Error instantiating database " + ex.Message +
 				"\n" + ex.StackTrace);
 			}
 		}
 
-		public IDbConnection Connection 
+		public IDbConnection Connection
 		{
-			get 
+			get
 			{
 				return _connection;
 			}
@@ -72,7 +72,7 @@ namespace RelayControllerService.Data
 			getDeviceData.CommandType = CommandType.Text;
 			var reader = getDeviceData.ExecuteReader ();
 			List<DeviceData> devices = new List<DeviceData> ();
-			while (reader.Read ()) 
+			while (reader.Read ())
 			{
 				DeviceData current = new DeviceData ();
 				current.Id = reader.GetInt16 (0);
@@ -83,14 +83,14 @@ namespace RelayControllerService.Data
 			reader.Close ();
 			reader.Dispose ();
 			getDeviceData.Dispose ();
-			return devices[0];
+			return devices [0];
 		}
 
 		#region IDisposable implementation
 
 		public void Dispose ()
 		{
-			if (_connection != null) 
+			if (_connection != null)
 			{
 				_connection.Dispose ();
 			}

@@ -8,15 +8,21 @@ namespace RelayControllerService
 		public DeviceData ()
 		{
 		}
-		public int Id {
+
+		public int Id
+		{
 			get;
 			set;
 		}
-		public string DeviceId {
+
+		public string DeviceId
+		{
 			get;
 			set;
 		}
-		public Boolean IsActive {
+
+		public Boolean IsActive
+		{
 			get;
 			set;
 		}
